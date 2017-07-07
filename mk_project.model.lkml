@@ -1,10 +1,8 @@
 connection: "thelook"
 
-# include all the views
-include: "*.view"
+include: "*.view.lkml"
 
-# include all the dashboards
-include: "*.dashboard"
+include: "*.dashboard.lookml"
 
 explore: events {
   join: users {
@@ -46,6 +44,11 @@ explore: orders {
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
     relationship: many_to_one
+  }
+  join: user_facts {
+    type: left_outer
+    sql_on: ${orders.user_id} = ${user_facts.user_id} ;;
+    relationship: one_to_one
   }
 }
 
