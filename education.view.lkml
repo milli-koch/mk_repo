@@ -228,13 +228,8 @@ view: education {
     value_format: "0.00"
   }
 
-  dimension: year {
-    view_label: "Countries and Regions"
-    type: string
-    sql: ${TABLE}.time ;;
-  }
-
   dimension: country_name {
+    hidden: yes
     map_layer_name: countries
     sql: ${TABLE}.Country_Name ;;
   }

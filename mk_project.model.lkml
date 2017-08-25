@@ -19,11 +19,6 @@ explore: education {
     relationship: one_to_one
     sql_on: ${education.country_name}=${economy.country_name} ;;
   }
-  join: countries_and_regions {
-    type: inner
-    relationship: many_to_one
-    sql_on: ${education.country_name}=${countries_and_regions.country} ;;
-  }
   join: gdp {
     type: inner
     relationship: one_to_one
@@ -33,6 +28,11 @@ explore: education {
     type: inner
     relationship: one_to_one
     sql_on: ${education.country_name}=${gni.country_name} ;;
+  }
+  join: countries_and_regions {
+    type: inner
+    relationship: one_to_one
+    sql_on: ${education.country_name}=${countries_and_regions.country1} ;;
   }
 
  }
