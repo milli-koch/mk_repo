@@ -243,4 +243,20 @@ view: education {
     fields: [country_name]
   }
 
+  filter: measure_type {
+    suggestions: ["Net Enrollment", "Children out of school (total)", "Primary Completion Rate", "Adult Literacy" ]
+  }
+
+  measure: variable_measure{
+    type: number
+    sql: case
+    when {% condition measure_type %} 'Net Enrollment' {% endcondition %} then ${adjusted_net_enrollment_rate__primary____of_primary_school_age_children_}
+    when {% condition measure_type %} 'Children out of school (total)' {% endcondition %} then ${children_out_of_school____of_primary_school_age_}
+    when {% condition measure_type %} 'Primary Completion Rate' {% endcondition %} then ${primary_completion_rate__total____of_relevant_age_group_}
+    when {% condition measure_type %} 'Adult Literacy' {% endcondition %} then ${literacy_rate__adult_total____of_people_ages_15_and_above_}
+    end
+  ;;
+  value_format: "0.00\%"
+  }
+
 }
